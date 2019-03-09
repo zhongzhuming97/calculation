@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+//测试用例 "55.6+4*60/2+33+(4.7*5.6)/5"
+/**
+ *中缀转后缀 
+ */
+
 public class InfixToSuffix {
 	private static final Map<Character, Integer> basic = new HashMap<Character, Integer>();
 	static {
