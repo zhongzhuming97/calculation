@@ -1,5 +1,7 @@
 package Utils;
 
+import Utils.Exception.MyException;
+
 /**
  * 分析表达式类，分析改表达式是否正确
  * 
@@ -55,7 +57,7 @@ public class Analysis {
 			exp();
 		} else {
 			System.out.println("表达式不正确，发生异常匹配");
-			throw new MyException(current + 1);
+			throw new MyException(current ,tokens);
 		}
 	}
 
