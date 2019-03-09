@@ -25,6 +25,7 @@ public class Analysis {
 			match(token);
 			term();
 		}
+
 	}
 
 	public void term() throws MyException {
@@ -53,7 +54,7 @@ public class Analysis {
 			match(token);
 			exp();
 		} else {
-			System.out.println("发生错误 当前位置:" + (current + 1));
+			System.out.println("表达式不正确，发生异常匹配");
 			throw new MyException(current + 1);
 		}
 	}
@@ -72,7 +73,8 @@ public class Analysis {
 			token = tokens[current];
 			exp();
 		} catch (MyException e) {
-			System.out.println(e.errorMessage());
+			System.out.print(e.errorMessage());
 		}
+
 	}
 }

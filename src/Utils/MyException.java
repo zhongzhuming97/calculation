@@ -7,8 +7,8 @@ package Utils;
  *
  */
 public class MyException extends Exception{
-	int position;
-	public MyException(int positon) {
+	private int position;
+	public MyException(int position) {
 		this.position=position;
 	}
 	public String errorMessage() {
