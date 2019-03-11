@@ -17,7 +17,7 @@ public class Main {
 		String a = InfixToSuffix.toSuffix("55.6+4*60/2+33+(4.7*5.6)/5");// 传入 一串 算数公式
 		System.out.println(a);
 		System.out.println(InfixToSuffix.dealEquation(a));
-		Analysis analysis = new Analysis("5+7(/");
+		Analysis analysis = new Analysis("46797+4676-546*464+(5+45/44)/4");
 		analysis.analysis();
 	}
 

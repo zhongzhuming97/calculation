@@ -14,9 +14,10 @@ public class Analysis {
 	private int current;
 	private char token;
 	private char[] tokens;
-
+	private String ruleOperation;
 	public Analysis(String infix) {
 		this.current = 0;
+		ruleOperation="+-*/";
 		this.tokens = infix.toCharArray();
 		// TODO Auto-generated constructor stub
 	}
@@ -45,19 +46,36 @@ public class Analysis {
 			exp();
 			match(')');
 		} else if (Character.isDigit(token)) {
+			// 匹配number
 			int len = 0;
-			// 将数字匹配
-			while ((Character.isDigit(token) || token == '.') && current < tokens.length) {
+			boolean hasPoint=false;
+			// test 5+7（/
+			while (true) {
 				// len可用来截取匹配的数，带小数点的数也可以
-				len++;
-				match(token);
+				if (Character.isDigit(token)  && current < tokens.length) {
+					len++;
+					match(token);
+				} else if(token=='.') {
+					if(hasPoint) {
+						throw new MyException(current, tokens);
+					}else {
+						len++;
+						hasPoint=true;
+						match(token);
+					}
+				}else if((!ruleOperation.contains(String.valueOf(token))&&token!='#')&&token!=')'){
+					//当前的为非运算符且不是最后一个符号
+					throw new MyException(current, tokens);
+				}else {
+					break;
+				}
 			}
 		} else if (token == '-') {
 			match(token);
 			exp();
 		} else {
 			System.out.println("表达式不正确，发生异常匹配");
-			throw new MyException(current ,tokens);
+			throw new MyException(current, tokens);
 		}
 	}
 
