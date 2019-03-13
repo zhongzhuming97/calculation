@@ -57,14 +57,17 @@ public class Analysis {
 					match(token);
 				} else if(token=='.') {
 					if(hasPoint) {
+						//第二次出现小数点,抛出异常
 						throw new MyException(current, tokens);
 					}else {
 						len++;
 						hasPoint=true;
 						match(token);
 					}
-				}else if((!ruleOperation.contains(String.valueOf(token))&&token!='#')&&token!=')'){
-					//当前的为非运算符且不是最后一个符号
+				}else if((!ruleOperation.contains(String.valueOf(token))
+						&&token!='#')
+						&&token!=')'){
+					//当前的是非运算符且不是最后一个符号，‘#’代表表达式已结束
 					throw new MyException(current, tokens);
 				}else {
 					break;
