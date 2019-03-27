@@ -15,9 +15,10 @@ public class Analysis {
 	private char token;
 	private char[] tokens;
 	private String ruleOperation;
+
 	public Analysis(String infix) {
 		this.current = 0;
-		ruleOperation="+-*/";
+		ruleOperation = "+-*/";
 		this.tokens = infix.toCharArray();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,28 +49,26 @@ public class Analysis {
 		} else if (Character.isDigit(token)) {
 			// 匹配number
 			int len = 0;
-			boolean hasPoint=false;
+			boolean hasPoint = false;
 			// test 5+7（/
 			while (true) {
 				// len可用来截取匹配的数，带小数点的数也可以
-				if (Character.isDigit(token)  && current < tokens.length) {
+				if (Character.isDigit(token) && current < tokens.length) {
 					len++;
 					match(token);
-				} else if(token=='.') {
-					if(hasPoint) {
-						//第二次出现小数点,抛出异常
+				} else if (token == '.') {
+					if (hasPoint) {
+						// 第二次出现小数点,抛出异常
 						throw new MyException(current, tokens);
-					}else {
+					} else {
 						len++;
-						hasPoint=true;
+						hasPoint = true;
 						match(token);
 					}
-				}else if((!ruleOperation.contains(String.valueOf(token))
-						&&token!='#')
-						&&token!=')'){
-					//当前的是非运算符且不是最后一个符号，‘#’代表表达式已结束
+				} else if ((!ruleOperation.contains(String.valueOf(token)) && token != '#') && token != ')') {
+					// 当前的是非运算符且不是最后一个符号，‘#’代表表达式已结束
 					throw new MyException(current, tokens);
-				}else {
+				} else {
 					break;
 				}
 			}
@@ -95,6 +94,8 @@ public class Analysis {
 		try {
 			token = tokens[current];
 			exp();
+//			if(current<tokens.length)
+//				throw new MyException(current, tokens);
 		} catch (MyException e) {
 			System.out.print(e.errorMessage());
 		}

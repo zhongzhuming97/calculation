@@ -1,10 +1,10 @@
 package Main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 import Utils.Analysis;
+import Utils.CreateExpression;
 import Utils.InfixToSuffix;
-import Utils.Exception.MyException;
 
 public class Main {
 
@@ -16,9 +16,13 @@ public class Main {
 	public static void test() {
 		String a = InfixToSuffix.toSuffix("55.6+4*60/2+33+(4.7*5.6)/5");// 传入 一串 算数公式
 		System.out.println(a);
-		System.out.println(InfixToSuffix.dealEquation(a));
-		Analysis analysis = new Analysis("46797+4676-546*464+(5+45/44)/4");
+		System.out.println(InfixToSuffix.dealEquation(a));//计算得出结果
+		Random rand =new Random();
+		System.out.println(rand.nextDouble());
+		System.out.println(rand.nextInt(1000));
+		Analysis analysis = new Analysis("5+5");
 		analysis.analysis();
+		CreateExpression.createExpression();
 	}
 
 }
