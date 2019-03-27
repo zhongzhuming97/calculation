@@ -5,7 +5,11 @@ import java.util.Random;
 import Utils.Analysis;
 import Utils.CreateExpression;
 import Utils.InfixToSuffix;
-
+/**
+ * 
+ * @author apple
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
@@ -20,9 +24,14 @@ public class Main {
 		Random rand =new Random();
 		System.out.println(rand.nextDouble());
 		System.out.println(rand.nextInt(1000));
-		Analysis analysis = new Analysis("5+5");
+		int count=10;
+		while(count>0) {
+		String s=CreateExpression.createRandomExpression();
+		System.out.println(s);
+		Analysis analysis = new Analysis(s);
 		analysis.analysis();
-		CreateExpression.createExpression();
+		count--;
+		}
 	}
 
 }

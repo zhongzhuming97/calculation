@@ -72,7 +72,7 @@ public class Analysis {
 					break;
 				}
 			}
-		} else if (token == '-') {
+		} else if (token == '-'||token=='+') {
 			match(token);
 			exp();
 		} else {

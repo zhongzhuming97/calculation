@@ -17,9 +17,13 @@ public class MyException extends Exception {
 	}
 
 	public String errorMessage() {
-		String eMessage;
+		String eMessage = "";
 		if (position >= tokens.length) {
 			position--;
+		}
+		if (position == 0) {
+			eMessage = "当前发生错误的位置为" + (position + 1) + '\n';
+			return eMessage;
 		}
 		eMessage = "当前发生错误的位置为" + (position + 1) + '\n';
 		switch (tokens[position - 1]) {
@@ -28,7 +32,11 @@ public class MyException extends Exception {
 		case '-':
 		case '*':
 		case '/':
-			eMessage += "当前位置" + (position + 1) + "符号: " + tokens[position] + " 和前一个位置 " + position +"符号: "+tokens[position]+ "之间必须存在数字";
+			eMessage += "当前位置" + (position + 1) + "符号: " + tokens[position] + " 和前一个位置 " + position + "符号: "
+					+ tokens[position] + "之间必须存在数字";
+			break;
+		case '.':
+			eMessage += "存在两个小数点";
 		}
 
 		return eMessage;
