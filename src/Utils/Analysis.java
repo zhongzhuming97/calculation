@@ -40,6 +40,7 @@ public class Analysis {
 		}
 	}
 
+	/*
 	public void factor() throws MyException {
 		// 将String转为char基本类型
 		if (token == '(') {
@@ -81,8 +82,46 @@ public class Analysis {
 		}
 	}
 
+	 */
+
+	public void factor() throws MyException {
+		// 将String转为char基本类型
+		if (token == '(') {
+			match(token);
+			exp();
+			match(')');
+		} else if (Character.isDigit(token)) {
+			int len = 0;
+			// 将数字匹配
+			boolean hasPoint=false;
+			while ((Character.isDigit(token) || token == '.') && current < tokens.length) {
+				// len可用来截取匹配的数，带小数点的数也可以
+				if(token=='.')
+					if(hasPoint)throw new MyException(current,tokens);
+					else hasPoint=true;
+				len++;
+				match(token);
+			}
+
+		} else {
+			System.out.println("发生错误 当前位置:" + (current + 1));
+			throw new MyException(current ,tokens);
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	public void match(char c) {
-		System.out.println("已经匹配" + c);
+		//System.out.println("已经匹配" + c);
 		current++;
 		if (current < tokens.length)
 			token = tokens[current];
@@ -97,7 +136,7 @@ public class Analysis {
 //			if(current<tokens.length)
 //				throw new MyException(current, tokens);
 		} catch (MyException e) {
-			System.out.print(e.errorMessage());
+			System.out.println(e.errorMessage());
 		}
 
 	}
