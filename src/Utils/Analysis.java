@@ -102,7 +102,6 @@ public class Analysis {
 				len++;
 				match(token);
 			}
-
 		} else {
 			System.out.println("发生错误 当前位置:" + (current + 1));
 			throw new MyException(current ,tokens);
